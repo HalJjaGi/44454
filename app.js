@@ -21,6 +21,7 @@ $("#submit").click(function (e) {
     $checked = $("input:checkbox[id='checkContract']").is(":checked")
     if ($checked == true) {
         alert("완료");
+        location.href = "index.html";
     }
     else {
         alert("개인정보활용동의에 체크해 주세요");
@@ -35,4 +36,81 @@ $("button.backButton").click(function (e) {
     e.preventDefault();
     
     window.history.back();
+});
+
+$("#edit").click(function (e) { 
+    e.preventDefault();
+
+    var text = "잘못된 참가정보는 불이익을 받을 수 있습니다. 참가정보를 수정 하시겠습니까?";
+
+    if(window.confirm(text) == true) {
+        alert("참가정보가 수정되었습니다.");
+        window.history.back();
+    }
+});
+
+$("#checkCancelcode").click(function (e) { 
+    e.preventDefault();
+    
+    $pcode = $("input[placeholder='참가코드']").val();
+    $ccode = $("#cancelCode").val();
+
+    if($pcode == "123456" && $ccode == "123456") {
+        alert("인증되었습니다.")
+        $("#checkCancelcode").attr("value", "checked");
+    }
+    else {
+        alert("인증코드 혹은 참가코드가 틀렸습니다");
+    }
+});
+
+$("#cancelButton").click(function (e) { 
+    e.preventDefault();
+    
+    $value = $("#checkCancelcode").attr("value");
+    if($value == "checked") {
+        var text = "정말로 참가를 취소하시겠습니까?";
+        if(window.confirm(text) == true) {
+            alert("참가가 취소되었습니다.");
+            location.href = "../index.html";
+        }
+    }
+    else {
+        alert("인증을 먼저 진행해 주세요")
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+//겉보기 용
+$("#noticeTable tr").click(function (e) { 
+    e.preventDefault();
+    
+    location.href = "noticeDetail.html";
+});
+
+$("#qnaTable tr").click(function (e) { 
+    e.preventDefault();
+    
+    location.href = "qnaDetail.html";
+});
+
+$("#mqnaTable tr").click(function (e) { 
+    e.preventDefault();
+    
+    location.href = "mqnaDetail.html";
+});
+
+$("#mnoticeTable tr").click(function (e) { 
+    e.preventDefault();
+    
+    location.href = "mnoticeDetail.html";
 });
